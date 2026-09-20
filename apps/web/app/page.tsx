@@ -1,344 +1,409 @@
+"use client";
+
+import { useState } from "react";
+
+const logoSrc =
+  process.env.NODE_ENV === "production"
+    ? "/ns-structural-platform/ns-logo.png"
+    : "/ns-logo.png";
+
 const services = [
-  "Structural Design",
-  "Structural Audit",
-  "Structural Repairs & Restoration",
-  "Finite Element Analysis",
-  "Failure Analysis",
-  "Project Management Consultancy",
-  "Water & Electricity",
-  "Land Development Consultancy",
+  {
+    number: "01",
+    title: "Structural Engineering",
+    description:
+      "Structural design, analysis and engineering solutions for complex buildings and infrastructure.",
+  },
+  {
+    number: "02",
+    title: "Civil Engineering",
+    description:
+      "Civil engineering support covering planning, coordination, infrastructure and site requirements.",
+  },
+  {
+    number: "03",
+    title: "Project Consultancy",
+    description:
+      "Technical consultancy supporting developers, contractors and project teams from concept through execution.",
+  },
+  {
+    number: "04",
+    title: "Technical Due Diligence",
+    description:
+      "Independent technical assessment to support acquisitions, development decisions and project risk management.",
+  },
 ];
 
 const projects = [
   {
-    title: "OLEFIN II",
-    client: "Dow Chemical",
-    location: "Kuwait",
-    type: "Industrial",
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=85",
+    category: "Commercial",
+    title: "Integrated Commercial Complex",
+    location: "Mumbai, Maharashtra",
+    description:
+      "Structural engineering and technical consultancy for a large-scale commercial development.",
   },
   {
-    title: "Goregaon Film City",
-    client: "Project experience",
-    location: "Mumbai, India",
-    type: "Development",
-    image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=85",
+    category: "Infrastructure",
+    title: "Water Infrastructure Rehabilitation",
+    location: "Thane, Maharashtra",
+    description:
+      "Engineering consultancy supporting rehabilitation and structural improvement of existing infrastructure.",
   },
   {
-    title: "Sahara Amby Valley Lake City",
-    client: "Project experience",
-    location: "India",
-    type: "Large-scale development",
-    image:
-      "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1800&q=85",
+    category: "Residential",
+    title: "Multi-Storey Residential Development",
+    location: "Navi Mumbai, Maharashtra",
+    description:
+      "Structural engineering services for a high-density residential development.",
   },
 ];
 
-export default function Home() {
+const expertise = [
+  "Structural design and analysis",
+  "Civil engineering consultancy",
+  "Industrial and commercial projects",
+  "Infrastructure engineering",
+  "Technical due diligence",
+  "Project and construction consultancy",
+];
+
+export default function HomePage() {
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
   return (
-    <main>
+    <main className="ns-site">
+      {/* Header */}
       <header className="site-header">
-        <a
-          href="/"
-          className="brand"
-          aria-label="NS Structural Consultants home"
-        >
+        <a href="/" className="site-logo" aria-label="NS Structural Consultants">
           <img
-            src="/ns-logo.png"
+            src={logoSrc}
             alt="NS Structural Consultants"
-            className="brand-logo"
+            className="site-logo-image"
           />
         </a>
 
         <nav className="site-nav" aria-label="Main navigation">
           <a href="#expertise">Expertise</a>
           <a href="#projects">Projects</a>
-          <a href="#intelligence">Tender Intelligence</a>
+          <a href="/tenders/">Tender Intelligence</a>
           <a href="#contact">Contact</a>
         </nav>
       </header>
 
-      {/* HERO */}
+      {/* Hero */}
+      <section className="hero-section">
+        <div className="hero-copy">
+          <p className="section-kicker">Civil &amp; Structural Engineering</p>
 
-      <section className="hero">
-        <div className="hero-frame">
-          <div className="hero-copy">
-            <p className="eyebrow">Civil & Structural Engineering</p>
+          <h1>
+            Engineering
+            <br />
+            expertise for
+            <br />
+            complex built
+            <br />
+            environments.
+          </h1>
 
-            <h1>
-              Engineering expertise for complex built environments.
-            </h1>
+          <p className="hero-description">
+            Civil and structural engineering consultancy across building,
+            infrastructure, water, energy and industrial projects.
+          </p>
 
-            <p className="hero-description">
-              Civil and structural engineering consultancy across building,
-              infrastructure, water, energy and industrial projects.
-            </p>
+          <div className="hero-actions">
+            <a href="#expertise" className="button button-primary">
+              Explore our expertise
+            </a>
 
-            <div className="hero-actions">
-              <a className="button button-primary" href="#expertise">
-                Explore our expertise
-              </a>
-
-              <a className="button button-secondary" href="#contact">
-                Discuss a project
-              </a>
-            </div>
+            <a href="#contact" className="button button-secondary">
+              Discuss a project
+            </a>
           </div>
+        </div>
 
-          <div className="hero-media">
-            <img
-              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2200&q=90"
-              alt="Architectural and engineering project drawings"
-            />
+        <div className="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2200&q=85"
+            alt="Engineering professional reviewing architectural drawings"
+          />
 
-            <div className="hero-media-label">
-              <span>Engineering consultancy</span>
-              <span>India · Europe · Middle East · Africa</span>
-            </div>
+          <div className="hero-image-meta">
+            <span>Engineering consultancy</span>
+            <span>India · Europe · Middle East · Africa</span>
           </div>
         </div>
       </section>
 
-      {/* EXPERTISE */}
-
-      <section id="expertise" className="section">
-        <div className="section-introduction">
+      {/* Expertise */}
+      <section id="expertise" className="section expertise-section">
+        <div className="section-intro">
           <div>
-            <p className="eyebrow">Expertise</p>
+            <p className="section-kicker">Expertise</p>
 
             <h2>
-              Engineering capability built around the project.
+              Engineering capability built
+              <br />
+              around the project.
             </h2>
           </div>
 
-          <p>
+          <p className="section-intro-copy">
             Technical consultancy spanning structural engineering, analysis,
-            assessment, restoration, project management and land development.
+            civil engineering and project support.
           </p>
         </div>
 
-        <div className="services-list">
-          {services.map((service, index) => (
-            <a href="#contact" className="service-row" key={service}>
-              <span className="service-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+        <div className="expertise-list">
+          {services.map((service) => (
+            <article className="expertise-row" key={service.number}>
+              <span className="expertise-number">{service.number}</span>
 
-              <h3>{service}</h3>
+              <div className="expertise-content">
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
 
-              <span className="service-arrow">↗</span>
-            </a>
+        <div className="expertise-tags">
+          {expertise.map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
       </section>
 
-      {/* PROJECT EXPERIENCE */}
-
+      {/* Project Experience */}
       <section id="projects" className="section projects-section">
-        <div className="section-introduction">
+        <div className="section-heading-row">
           <div>
-            <p className="eyebrow">Project experience</p>
+            <p className="section-kicker">Project Experience</p>
 
             <h2>
-              Engineering work across demanding environments.
+              Technical thinking
+              <br />
+              applied to real projects.
             </h2>
           </div>
 
-          <p>
-            Selected project experience demonstrating the breadth of NS
-            Structural Consultants&apos; engineering work.
+          <p className="section-heading-copy">
+            Selected experience across commercial, residential,
+            infrastructure and industrial environments.
           </p>
         </div>
 
         <div className="projects-grid">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <article className="project-card" key={project.title}>
-              <a href="#contact" className="project-image">
-                <img src={project.image} alt={project.title} />
-              </a>
-
-              <div className="project-information">
-                <div>
-                  <span className="project-type">{project.type}</span>
-
-                  <h3>{project.title}</h3>
-
-                  <p>{project.client}</p>
-                </div>
-
-                <div className="project-location">
-                  <span>Location</span>
-                  <strong>{project.location}</strong>
-                </div>
+              <div className="project-image">
+                <img
+                  src={`https://images.unsplash.com/photo-${
+                    [
+                      "1486406146926-c627a92ad1ab",
+                      "1541888946425-d81bb19240f5",
+                      "1487958449943-2429e8be8625",
+                    ][index]
+                  }?auto=format&fit=crop&w=1600&q=85`}
+                  alt={project.title}
+                />
               </div>
+
+              <div className="project-meta">
+                <div>
+                  <p className="project-category">{project.category}</p>
+                  <h3>{project.title}</h3>
+                </div>
+
+                <span>{project.location}</span>
+              </div>
+
+              <p className="project-description">{project.description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      {/* TENDER INTELLIGENCE */}
+      {/* Tender Intelligence */}
+      <section className="tender-bridge">
+        <div className="tender-bridge-content">
+          <p className="section-kicker">Tender Intelligence</p>
 
-      <section id="intelligence" className="intelligence-section">
-        <div className="intelligence-inner">
-          <div>
-            <p className="eyebrow eyebrow-light">
-              Digital capability
-            </p>
+          <h2>
+            Find the opportunities
+            <br />
+            that fit your capability.
+          </h2>
 
-            <h2>
-              From opportunity discovery to engineering delivery.
-            </h2>
+          <p>
+            Discover, understand and evaluate engineering opportunities from
+            multiple tender sources through one structured intelligence
+            platform.
+          </p>
+
+          <a href="/tenders/" className="button button-primary">
+            Explore Tender Intelligence
+          </a>
+        </div>
+
+        <div className="tender-bridge-data">
+          <div className="tender-data-row">
+            <span>Discover</span>
+            <strong>Multiple tender sources</strong>
           </div>
 
-          <div className="intelligence-content">
-            <p>
-              We are developing a Tender Intelligence platform designed to
-              help businesses discover relevant opportunities, understand
-              requirements and connect them with engineering capability.
-            </p>
+          <div className="tender-data-row">
+            <span>Understand</span>
+            <strong>AI-assisted tender analysis</strong>
+          </div>
 
-            <div className="intelligence-flow">
-              <span>Discover</span>
-              <span>Understand</span>
-              <span>Match</span>
-              <span>Connect</span>
-              <span>Execute</span>
-            </div>
+          <div className="tender-data-row">
+            <span>Match</span>
+            <strong>Engineering relevance</strong>
+          </div>
 
-            <a className="text-link" href="#contact">
-              Discuss the platform ↗
-            </a>
+          <div className="tender-data-row">
+            <span>Connect</span>
+            <strong>Qualified opportunities</strong>
           </div>
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* Contact */}
+      <section id="contact" className="section contact-section">
+        <div className="contact-intro">
+          <p className="section-kicker">Contact</p>
 
-      <section id="contact" className="contact-section">
-        <div className="contact-inner">
-          <div className="contact-introduction">
-            <p className="eyebrow">Contact</p>
+          <h2>Let&apos;s discuss the project.</h2>
 
-            <h2>Let&apos;s discuss the project.</h2>
+          <p>
+            Tell us what you are working on and where you need engineering
+            support. Our team can help define the right technical approach.
+          </p>
 
-            <p className="contact-description">
-              Tell us about your project, engineering requirement or technical
-              challenge. Our team can help determine the right technical
-              approach.
-            </p>
+          <div className="contact-details">
+            <a href="tel:+912200000000">+91 22 0000 0000</a>
 
-            <div className="contact-details">
-              <a href="tel:+919619252020">
-                <span>Phone</span>
-                <strong>+91 9619252020</strong>
-              </a>
-
-              <address>
-                <span>Office</span>
-                <strong>
-                  22 Ajit Shopping Centre
-                  <br />
-                  Nr. Teen Petrol Pump, LBS Road
-                  <br />
-                  Thane W – 400602
-                </strong>
-              </address>
-            </div>
+            <address>
+              NS Structural Consultants
+              <br />
+              Mumbai, Maharashtra
+              <br />
+              India
+            </address>
           </div>
+        </div>
 
-          <div className="contact-form-wrap">
-            <div className="contact-form-heading">
-              <span>Project enquiry</span>
+        <div className="contact-form-wrap">
+          {submitted ? (
+            <div className="form-success">
+              <p className="section-kicker">Enquiry received</p>
 
-              <p>Share a few details and we&apos;ll get back to you.</p>
+              <h3>Thank you for getting in touch.</h3>
+
+              <p>
+                Your enquiry has been recorded. Our team will get back to you
+                shortly.
+              </p>
+
+              <button
+                type="button"
+                className="button button-secondary"
+                onClick={() => setSubmitted(false)}
+              >
+                Send another enquiry
+              </button>
             </div>
-
-            <form className="contact-form">
-              <div className="form-field">
-                <label htmlFor="name">Full name</label>
-
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Enter your full name"
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-field">
-                  <label htmlFor="email">Email address</label>
-
+          ) : (
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-grid">
+                <label>
+                  <span>Full name</span>
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Enter your email"
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    required
                   />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="phone">Phone number</label>
-
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-              </div>
-
-              <div className="form-field">
-                <label htmlFor="project">
-                  Project / requirement
                 </label>
 
-                <input
-                  id="project"
-                  name="project"
-                  type="text"
-                  placeholder="What do you need help with?"
-                />
-              </div>
+                <label>
+                  <span>Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@company.com"
+                    required
+                  />
+                </label>
 
-              <div className="form-field">
-                <label htmlFor="message">Message</label>
+                <label>
+                  <span>Phone</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="+91"
+                  />
+                </label>
 
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  placeholder="Tell us about your project"
-                />
+                <label>
+                  <span>Project / requirement</span>
+                  <input
+                    type="text"
+                    name="project"
+                    placeholder="What do you need help with?"
+                  />
+                </label>
+
+                <label className="form-full">
+                  <span>Message</span>
+                  <textarea
+                    name="message"
+                    rows={5}
+                    placeholder="Tell us about the project..."
+                    required
+                  />
+                </label>
               </div>
 
               <button type="submit" className="button button-primary">
-                Send enquiry ↗
+                Send enquiry
               </button>
             </form>
-          </div>
+          )}
         </div>
       </section>
 
-      {/* FOOTER */}
-
+      {/* Footer */}
       <footer className="site-footer">
         <div className="footer-brand">
           <img
-            src="/ns-logo.png"
+            src={logoSrc}
             alt="NS Structural Consultants"
             className="footer-logo"
           />
 
-          <p>Civil and structural engineering consultancy.</p>
+          <p>
+            Civil and structural engineering consultancy for complex built
+            environments.
+          </p>
         </div>
 
-        <p className="footer-copyright">
-          © {new Date().getFullYear()} NS Structural Consultants
-        </p>
+        <div className="footer-links">
+          <a href="#expertise">Expertise</a>
+          <a href="#projects">Projects</a>
+          <a href="/tenders/">Tender Intelligence</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div className="footer-bottom">
+          <span>© 2026 NS Structural Consultants</span>
+          <span>Engineering precision presented with editorial clarity.</span>
+        </div>
       </footer>
     </main>
   );
