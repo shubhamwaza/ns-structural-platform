@@ -71,7 +71,11 @@ export default function TendersPage() {
       <aside className="tender-sidebar">
         <div className="tender-brand">
           <img
-            src="/ns-logo.png"
+            src={
+  process.env.NODE_ENV === "production"
+    ? "/ns-structural-platform/ns-logo.png"
+    : "/ns-logo.png"
+}
             alt="NS Structural Consultants"
           />
         </div>
